@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="Player"/>
+<fullyQualifiedTypeName name="AudioPlayer"/>
+<fullyQualifiedTypeName name="Tank"/>
+<fullyQualifiedTypeName name="Dropship"/>
+<fullyQualifiedTypeName name="Fighter"/>
+<fullyQualifiedTypeName name="Fightable"/>
+<fullyQualifiedTypeName name="Aex_ch5_0418"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="BankAccount"/>
+<fullyQualifiedTypeName name="BankAccount2"/>
+<fullyQualifiedTypeName name="Variables"/>
+</qualifiedTypeNameHistroy>

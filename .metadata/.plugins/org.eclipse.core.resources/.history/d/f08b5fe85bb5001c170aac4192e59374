@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Aex_04 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		String tmp = sc.nextLine();     
+		int num = Integer.parseInt(tmp);   // String tmp=sc.nextint();
+		
+		switch(num) {
+		case 1:
+			System.out.println("1입력");
+		case 2:
+		System.out.println("12입력");
+		case 3:
+		System.out.println("13입력");
+		case 4: 
+		System.out.println("14입력");
+		default:		
+		System.out.println("그 외 입력");
+		
+		
+		}
+		
+		
+		
+		
+		
+	}
+
+}

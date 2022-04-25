@@ -1,0 +1,18 @@
+import java.util.Arrays;
+
+class Ex5_1_tmp {
+	public static void main(String[] args) {
+	
+	String string = "ABCDE";
+	char ch = string.charAt(0);
+	
+	String str2 = string.substring(1,4);
+	String str3 = string.substring(2);
+	
+	System.out.println(str2);
+	System.out.println(str3);
+		
+		
+		
+	}
+}

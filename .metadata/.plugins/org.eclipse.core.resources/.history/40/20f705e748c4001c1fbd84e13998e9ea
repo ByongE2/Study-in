@@ -1,0 +1,21 @@
+
+public class BankAccount {
+
+	int balance;
+//	int deposit(int amount) {
+		
+//	}
+
+}
+
+
+class MainClass {
+
+	public static void main(String[] args) {
+		
+	}
+
+}
+
+//잔액: 10000
+//잔액: 7000

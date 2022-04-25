@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+// 일 월 화 수 목 토 일 --> 랜덤하게 이 중 하나가 나오면 
+//		그에 맞는 소문자로 요일 이력 
+
+public class Day {
+
+	public static void main(String[] args) {
+		
+		String[] korDay = new String[] { "일", 	   "월", 	 "화", 	    "수", 	    "목", 	   "금", 	"토"       };
+		String[] engDay = new String[] { "sunday", "monday", "tuesday", "wednesday","thursday","fryday","saturday"};
+		int d = (int)(Math.random()*7);
+		System.out.println("다음의 요일을 소문자로 입력하세요.");
+		System.out.println(korDay[d]);
+		System.out.println(">>");
+		
+		Scanner sc = new Scanner(System.in);
+		String input = sc.nextLine();
+		for(int i=0; i<korDay.length; i++) {
+			if(korDay[i] == engDay[i])
+				System.out.println("정답입니다.");
+			else
+				System.out.println("오답입니다.");
+		}
+		
+		
+		
+		for(int i =0; i<korDay.length; i++) {
+		}
+		
+		
+	}
+
+}

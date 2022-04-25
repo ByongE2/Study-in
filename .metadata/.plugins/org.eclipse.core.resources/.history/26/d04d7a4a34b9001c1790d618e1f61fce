@@ -1,0 +1,30 @@
+
+public class MyMEMOJANG {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		int i = 1;										
+		
+		switch(i) {
+		case 1 : 
+			System.out.println("111");
+		case 2 : 
+			System.out.println("222");
+		case 3 : 
+			System.out.println("3");
+			break;
+			//			
+//			
+//		}
+////		for(int i=2; i<=9; i++){
+////			for(j=1; j<=9; j++)
+////				System.out.println(i+"*"+ j +"="+i*j); // ??for 문 와일문 2개일 때 비교 함더보고.
+//		}
+			
+		
+		}
+	}
+
+}

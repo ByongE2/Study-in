@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;Ch02_solving.java&apos; to &apos;Ch02_solving0407_1try.java&apos;&#x0D;&#x0A;- Original project: &apos;ExSolve&apos;&#x0D;&#x0A;- Original element: &apos;Ch02_solving.java&apos;&#x0D;&#x0A;- Renamed element: &apos;Ch02_solving0407_1try.java&apos;" description="Rename compilation unit &apos;Ch02_solving.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;{Ch02_solving.java" name="Ch02_solving0407_1try.java" references="false" stamp="1649323395033" version="1.0"/>
+</session>

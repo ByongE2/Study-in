@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Aex_04 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("현재 월을 입력하세요.");
+		
+		Scanner sc = new Scanner(System.in);
+		int month = sc.nextInt();     
+//		int num = Integer.parseInt(tmp);   // String tmp=sc.nextint();
+	
+		
+		switch(month) {
+		case 3: case4: case5:
+			System.out.println("현재 봄입니다. ");
+			break;
+		case 5: case 6: case 7:
+			System.out.println("현재 여릅입니다.");
+			break;
+		case 8: case 9: case 10:
+			System.out.println("현재 가을입니다.");
+			break;
+		default:
+			System.out.println("현재 겨울입니다.");
+
+
+		}
+
+
+
+		
+		
+	}
+
+}
