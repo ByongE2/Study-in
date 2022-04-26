@@ -16,8 +16,9 @@ class ClassTestttttt{
 public class MyExSpace {
    public static void main(String[] args) {
 	   
-	    int iii=0;
 //	   iiii++;
-	   
+
+   
+   
    }
 }
