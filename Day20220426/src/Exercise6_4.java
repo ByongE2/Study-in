@@ -26,9 +26,6 @@ class Student {
 	int eng;
 	int math;
 	
-	int this() {
-		return;
-	}
 	
 	int getTotal() {
 		return kor + eng + math;
