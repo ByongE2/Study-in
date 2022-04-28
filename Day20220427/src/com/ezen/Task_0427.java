@@ -4,7 +4,7 @@ import lombok.Setter;				//롬복 세터
 public class Task_0427 {
    public static void main(String[] args) {
       
-//      Sedan se = new Sedan();			// (class)Sedan타입 선언 > 인스턴스 Sedan 생성 > 생성자Sedan() 호출 > 
+//      Sedan se = new Sedan();			// Sedan(class)타입 선언 > 인스턴스 Sedan 생성 > 생성자Sedan() 호출 > 
 //      se.setColor("red"); 									// 생성자Sedan() 초기화 > 참조변수 se에 저장 			
 //      System.out.println(se.getColor());						// 생성자 호출 초기화 루틴은 최고조상클래스까지. 
 //      														// 
@@ -20,7 +20,7 @@ public class Task_0427 {
 //      Sports sp2 = new Sports("yollow", 2, 4, 1, 5000);
 //      sp2.run();
       Sports sp3 = new Sports();								
-      sp3.run();												// 오버라이딩 했을 때 자손클래스(Sports)의 메서드구현부가 구현됨.
+      sp3.run();										// 오버라이딩 했을 때 자손클래스(Sports)의 메서드구현부가 구현됨.
 //      Sedan se2 = new Sedan("bule", 2, 4, 3);
       Sedan se2 = new Sedan();
       System.out.println(se2.getPassenger() + "명");

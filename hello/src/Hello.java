@@ -24,6 +24,11 @@ public class Hello {
 		System.out.println("Hell0");
 		System.out.println("Hell0");
 		System.out.println("1회 깃 테스트");
+		
+		int x=0;
+		double y = 0;
+		x = (int)y;
+		y=x;
 	}                            
 
 }
