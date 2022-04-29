@@ -23,15 +23,34 @@ class Buyer {
 	int i = 0;										// Product배열 cart에 사용될 index
 	
 	void buy(Product p) {
-		
+		if(money < p.price) {
+			System.out.println("잔액부족" + p + "살수없습니다"); return;
+		}
+		money -= p.price;
+		add(p);
 	}
 	void add(Product p) {
-		
+		if(i >= cart.length) {
+//			Product[] tmp = new Product[cart.length*2];
+//			System.arraycopy(cart, 0, tmp, 0, cart.length);
+//			cart = tmp;
+			Product[] cart2 = new Product[cart.length*2];
+			for(int i=0; i<cart.length; i++)  cart2[i] = cart[i];
+			cart = cart2;
+		}
+		cart[i++]=p;
 	}
 	void summary() {
-//		System.out.println(Arrays.toString(cart));
-//		System.out.println(cart[0].price+cart[1].price+cart[2].price);
-//		System.out.println(money-);
+		
+		int sum = 0;
+		for(int i=0; i < cart.length; i++) {
+//			if(cart[i]== null) break;
+			sum += cart[i].price;
+		}
+		System.out.println("구매목록 : " + Arrays.toString(cart));  
+		// String itemList = ""; 	itemList += cart[i] + ",";
+		System.out.println("구입한 물건의 총액 : " + sum);
+		System.out.println("잔액은 : " + money);
 	}
 }//end of Buyer
 class Product{
@@ -39,10 +58,11 @@ class Product{
 	Product(int price){
 		this.price = price;
 	}
+	
 }//end of Product
 class Tv3 extends Product{		// Tv
 	Tv3(){ super(100);}
-	public String toString() { return "Tv"; }
+	public String toString() { return "Tv"; }			//objcet 것을 오버라이딩 .
 }
 class Computer extends Product{		//Computer
 	Computer() { super(200); }
