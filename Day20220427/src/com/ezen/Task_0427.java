@@ -23,7 +23,7 @@ public class Task_0427 {
       sp3.run();										// 오버라이딩 했을 때 자손클래스(Sports)의 메서드구현부가 구현됨.
 //      Sedan se2 = new Sedan("bule", 2, 4, 3);
       Sedan se2 = new Sedan();
-      System.out.println(se2.getPassenger() + "명");
+      System.out.println(se2.getColor() + "명");
       System.out.println(se2.getColor());
    }
 }
@@ -58,9 +58,9 @@ class Sedan extends Car {								// Car를 조상으로하는 Sedan class
       System.out.println("sedan");						//상속 관계에 있는 클래스에서 기본 생성자 생성 순서 확인하는 print메서드 
       //"bule", 2, 4, 3
       setColor("blue");									// 세터에 data값 직접 입력.
-      setPassenger(2);
-      setTire(4);
-      setSeat(2);
+//      setPassenger(2);
+//      setTire(4);
+//      setSeat(2);
    } 
    public Sedan(String color, int passenger, int tire, int seat) {		// 매개변수 4개 입력받는 생성자
       super(passenger, tire, seat);  					// 조상클래스(Car) 매개변수3개(타입도 일치해야 한다) 받는 생성자 호출.
