@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename type &apos;Tv2&apos; to &apos;Tv3&apos;&#x0D;&#x0A;- Original project: &apos;Day20220428&apos;&#x0D;&#x0A;- Original element: &apos;Tv2&apos;&#x0D;&#x0A;- Renamed element: &apos;Tv3&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Tv2&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{Exercise7_19.java[Tv2" matchStrategy="1" name="Tv3" qualified="false" references="true" similarDeclarations="false" stamp="1651134890427" textual="false" version="1.0"/>
-</session>

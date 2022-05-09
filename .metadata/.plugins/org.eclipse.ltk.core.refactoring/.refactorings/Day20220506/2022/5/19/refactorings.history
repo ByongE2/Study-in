@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename type &apos;ezen01.Ex9_18&apos; to &apos;StringBufferEx1&apos;&#x0D;&#x0A;- Original project: &apos;Day20220506&apos;&#x0D;&#x0A;- Original element: &apos;ezen01.Ex9_18&apos;&#x0D;&#x0A;- Renamed element: &apos;ezen01.StringBufferEx1&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Ex9_18&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;ezen01{Ex9_18.java[Ex9_18" matchStrategy="1" name="StringBufferEx1" qualified="false" references="true" similarDeclarations="false" stamp="1651806363518" textual="false" version="1.0"/>
-</session>

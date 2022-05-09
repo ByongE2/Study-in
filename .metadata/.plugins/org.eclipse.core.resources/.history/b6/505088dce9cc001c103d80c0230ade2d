@@ -1,9 +1,0 @@
-package ezen01;
-
-public class StringBufferEx1 {
-
-	public static void main(String[] args) {
-
-	}
-
-}
