@@ -1,0 +1,14 @@
+package ezen01;
+
+public class StringTokenizerEx1 {
+
+	public static void main(String[] args) {
+
+		String src = "100,200,300,400";
+		src.split(",");
+		System.out.println(src.toString());
+		
+		
+	}
+
+}

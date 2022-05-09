@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PracticeIndex4</title>
+	<style type="text/css">
+		body{margine : 0; padding: 0; font-family: "맑은 고딕";}
+		ul,ol,li{margin: 0; padding: 0; list-style: none;}
+		header{width: 1100px; height: 100px; background-color: #A7EEFF; margin: 0 auto;}
+		#logo{width: 130px; height: 70px; background-color: #006400; margin: 20px 0 5px 10px; float: left;}
+		nav{width: 740px; height: 30px; background-color: #FFBBC6; margin: 30px 30px 0 0; float: right;}
+		#slider{width: 1100px; height: 450px; background-color: #A2E9FF; margin: 0 auto;}
+		section{width: 1100px; height: 280px; background-color: #9DE4FF; margin: 0 auto;}
+		footer{width: 1100px; height: 100px; background-color: #5A5AFF; margin: 0 auto;}
+	</style>
+
+
+</head>
+<body>
+	<header>
+		<div id="logo"></div>
+		<nav></nav>
+	</header>
+	<div id="slider"></div> 
+	<section></section>
+	<footer></footer>
+	
+	
+</body>
+</html>

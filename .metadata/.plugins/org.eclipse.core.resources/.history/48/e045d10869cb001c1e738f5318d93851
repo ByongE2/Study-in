@@ -1,0 +1,11 @@
+package com.ezen.ex01;
+
+public class Exch9_7 {
+
+}
+class Point implements Cloneable{
+	
+}
+class CloneEx1{
+	
+}

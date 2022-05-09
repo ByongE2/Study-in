@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class MyExSpace {
+   public static void main(String[] args) {
+
+	   Scanner sc = new Scanner(System.in);
+	   
+//	   System.out.println("입력해바");
+//	  
+//	   int input = sc.nextInt();
+////	   sc.nextLine();
+//	   System.out.println("입력해바2 : " + input);
+//	   
+//	   int input2 = sc.nextInt();
+//	   sc.nextLine();
+//	   
+//	   System.out.println("입력해바3: " + input);
+	   
+	   System.out.println("이름>");
+       String name =sc.next(); //에서 홍 길 동
+       System.out.println(name);
+       sc.nextLine();
+       System.out.println("번호>");
+       String num = sc.nextLine(); 
+       System.out.println("오잉");
+	   
+	   
+	   
+   }
+}

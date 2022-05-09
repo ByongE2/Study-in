@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ByongE</title>
+</head>
+<body>
+	<h1>Hello</h1>
+	<img alt="강아지 사진" src="#" width="200" height="200">
+	<img alt="고양이 사진" src="#" style="width=200px; height=200px">
+	<!-- 블럭분할 -->
+	<div>div1</div>
+	<div>div2</div>
+	<div>div3</div>
+	<div>div4</div>
+	<!-- inline -->
+	<span>inline1</span>
+	<span>inline2</span>
+	<span>inline3</span>
+	<span>inline4</span>
+</body>
+</html>

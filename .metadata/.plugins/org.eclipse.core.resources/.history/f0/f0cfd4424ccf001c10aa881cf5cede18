@@ -1,0 +1,41 @@
+package com.it.main;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class Database {
+
+	private Connection con; //mysql 연결
+	private PreparedStatement psmt; // sql 문장 전송
+	private final String URL = "jdbc:mysql://localhost:3306/mydb?serverTimezone=UTC";
+	
+	//드라이버 등록 : 한번만 등록하면된다. 커넥터.
+	public Database() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("성공?"); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//연결
+	public void getConnection() {
+		try {
+			con = DriverManager.getConnection(URL,"root","1234");
+			System.out.println("접속 성공?");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	public static void main(String[] args) {
+
+		Database db = new Database();
+		db.getConnection();
+		
+	}
+
+}

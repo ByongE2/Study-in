@@ -1,0 +1,20 @@
+package hello;
+
+public class EXXXX_01 {
+
+
+		static int iv;
+		static int cv;
+		
+		void instanceMethod( ) {
+			System.out.println(iv);
+			System.out.println(cv);
+		}
+
+		static void staticMethod() {
+			System.out.println(iv); 
+			System.out.println(cv);
+		}
+		}	
+		
+	

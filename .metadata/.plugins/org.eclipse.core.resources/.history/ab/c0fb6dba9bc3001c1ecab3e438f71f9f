@@ -1,0 +1,19 @@
+class AA {
+	
+	
+}
+class BB {
+	
+}
+class CC {
+	
+}
+
+public class InnerTest {
+
+	public static void main(String[] args) {
+
+		
+	}
+
+}

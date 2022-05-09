@@ -1,0 +1,13 @@
+import java.util.Arrays;
+
+class Ex5_1_tmp {
+	public static void main(String[] args) {
+	
+	String string = "ABCDE";
+	char ch = string.charAt(0);
+	System.out.println(ch);
+		
+		
+		
+	}
+}

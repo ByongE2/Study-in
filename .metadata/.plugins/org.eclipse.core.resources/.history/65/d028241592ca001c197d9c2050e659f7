@@ -1,0 +1,15 @@
+package LGSamsung;
+
+public class UserTest {
+
+	public static void main(String[] args) {
+
+		LgTV tv = new LgTV();
+		tv.powerDown();
+		tv.powerOn();
+		tv.volumeDown();
+		tv.volumeUp();
+		
+	}
+
+}

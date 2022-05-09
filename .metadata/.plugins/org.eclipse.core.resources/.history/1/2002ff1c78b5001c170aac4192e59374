@@ -1,0 +1,32 @@
+
+public class MyEx01 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+			
+			Tv t;
+			t =  new Tv();
+			t.channel1 = 7;
+			t.channel1down() ; 
+			System.out.println("현재 채널은" + t.channel1 +"입니다.");	
+	}
+	char a = 'a';
+	System.out.print(a);
+	
+}
+	class Tv {
+		String color;
+		boolean power;
+		int channel1;
+	
+		void power( ) {power = !power;}
+		void channel1up() {channel1++;}
+		void channel1down() {channel1--;}
+
+	
+
+	
+	
+	}
+
+

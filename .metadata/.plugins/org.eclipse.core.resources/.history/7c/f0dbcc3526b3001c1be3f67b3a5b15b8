@@ -1,0 +1,22 @@
+import java.util.Arrays;
+
+class Ex5_1_tmp {
+	public static void main(String[] args) {
+
+		
+	int[] arr = {0,1,2,3,4} ;
+	int[] arr2 = Arrays.copyOfRange(arr, 2, 4);
+	
+	
+	System.out.println(Arrays.arr);
+	System.out.println(arr2);
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+}

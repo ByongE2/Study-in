@@ -1,0 +1,57 @@
+import java.util.Random;
+import java.util.Scanner;
+
+// 일 월 화 수 목 토 일 --> 랜덤하게 이 중 하나가 나오면 
+//		그에 맞는 소문자로 요일 이력 
+
+public class Day {
+
+	public static void main(String[] args) {
+		
+		String[] korDay = new String[] { "일", 	   "월", 	 "화", 	    "수", 	    "목", 	   "금", 	"토"       };
+		String[] engDay = new String[] { "sunday", "monday", "tuesday", "wednesday","thursday","fryday","saturday"};
+		
+		Random rand = new Random();
+		int retry = 0;
+		int last = -1;
+
+		do {
+			int day;
+			do {
+				day = rand.nextInt(7);
+			}while(day == last);
+			last = day;
+			while(true) {
+				System.out.println(korDay[day] + ":");
+			}
+			
+		}while(retry == 1 );
+		
+//		System.out.println("다음의 요일을 소문자로 입력하세요.");
+//		loop:
+//		while(true) {
+//		while(true) {
+//			System.out.println(korDay[d]);
+//			System.out.println(">>");
+//
+//			Scanner sc = new Scanner(System.in);
+//			String input = sc.nextLine();
+//			if(input.equals(engDay[d])) {
+//				System.out.println("정답입니다."); break;
+//			}
+//			System.out.println("오답입니다. 다시 입력해 주세요."); break;
+//
+//			System.out.println("재도전(1), 종료(0)");
+//			retry = sc.nextInt();
+//			sc.nextLine();
+//			if(retry == 1) continue;
+//			else break;
+//		}
+//
+//		}//end of while
+//		System.out.println("프로그램 종료.");
+
+		
+	}
+
+}

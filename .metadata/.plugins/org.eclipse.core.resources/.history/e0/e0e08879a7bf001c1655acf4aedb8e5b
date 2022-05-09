@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class MyExSpace {
+   public static void main(String[] args) {
+  // 달력 만들기. 년, 월 입력 하면 달력 출력. 되는걸로.
+	  static int input_year() {
+		  
+	  }
+	   
+	   
+   }//main 끝
+
+}//public class 끝

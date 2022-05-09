@@ -1,0 +1,29 @@
+
+
+class TestCompileRange {
+	int iv =3;
+}
+
+public class Ch02_solving0407_1try {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+//	//	[2-1] boolean , 
+//					char, 
+//			byte,   short, int, long
+//							float, double
+//		[2-2]
+		String regNo = "880825-1111111";
+		System.out.println(regNo);
+		System.out.println(int(in));
+				
+//		[2-3]		
+//	리터럴: 100, 100L, 3.14f		변수: i, l, PI?(final 인 문장의 변수도 포함이겠지?)
+//	키워드: 		?				상수: 3.14;
+	
+	
+	
+	}
+
+}

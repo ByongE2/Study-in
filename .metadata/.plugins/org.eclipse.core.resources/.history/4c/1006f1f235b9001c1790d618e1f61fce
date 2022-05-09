@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class MyMEMOJANG {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+			//			
+//			
+//		}
+////		for(int i=2; i<=9; i++){
+////			for(j=1; j<=9; j++)
+////				System.out.println(i+"*"+ j +"="+i*j); // ??for 문 와일문 2개일 때 비교 함더보고.
+//		}
+
+		int num = 0, sum=0;
+		System.out.println("숫자를 입력하세요.(예:12345)>");
+		
+		Scanner scanner = new Scanner(System.in);
+		String tmp = scanner.nextLine();
+		num = Integer.parseInt(tmp);
+		
+		while(num!=0) {
+			sum+=num%10;
+			System.out.printf("sum=%d num=%d%n", sum,num);
+			num/=10; 
+		}
+		System.out.println("각 자리수의 합:"+sum);
+	}
+
+}

@@ -1,0 +1,21 @@
+
+public class MyExSpace {
+   public static void main(String[] args) {
+	   int[][] score = { 
+				{100,100,100},
+				{20 ,20 ,20 },
+				{30 ,30 ,30 },
+				{40 ,40 ,40 },
+				{50 ,50 ,50 }
+		};
+		System.out.println(score[4][2]);
+		
+		for(int i =0; i < score.length; i++) {
+			
+			for(int k=0; k < score[i].length; k++)
+				System.out.print(score[i][k] + " ");
+			
+				System.out.println();
+		}
+   }
+}

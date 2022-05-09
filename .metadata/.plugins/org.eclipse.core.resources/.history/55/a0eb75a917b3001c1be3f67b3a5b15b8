@@ -1,0 +1,18 @@
+import java.util.Arrays;
+
+class Ex5_1_tmp {
+	public static void main(String[] args) {
+	
+		int n = (int)(Math.random() * 3);
+		
+		System.out.println(n);
+		System.out.println(n);
+		
+		
+		
+		
+		
+		
+		
+	}
+}

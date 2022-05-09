@@ -1,0 +1,16 @@
+package SamsunLG;
+
+public class TestUser {
+
+	public static void main(String[] args) {
+
+		SamsungTV sam = new SamsungTV();
+		sam.powerOn();
+		sam.powerOff();
+		sam.volumeUp();
+		sam.volumeDown();
+		
+		
+	}
+
+}

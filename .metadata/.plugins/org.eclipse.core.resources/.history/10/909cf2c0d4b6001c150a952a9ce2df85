@@ -1,0 +1,20 @@
+package hello;
+
+public class Aex_0408for {
+
+	public static void main(String[] args) {
+		int sum=0;
+		int i=1;
+		for(; i<=5; i++) {
+			sum +=i;
+					System.out.println("i:"+ i + " , sum:"+ i);
+					
+		}
+		System.out.println("i:+" + " , Last sum=" + sum); // int i 를 for문 앞으로 옮기면 ln메서드에 i사용 가능.	
+		
+		
+		
+		
+	}
+
+}
