@@ -1,0 +1,26 @@
+@charset "UTF-8";
+<style type="text/css">
+
+  *{margin: 0;}
+  ul,li{list-style: none; margin: 0; padding:0;}
+  a{text-decoration: none; color:#fff;}
+  
+  /* header */
+  header{width:1000px; height:100px; margin: auto; background-color:#ff993c;}
+  header h1{color: white; text-align: center; line-height: 90px;}
+  
+  /* nav */
+  nav{width:1000px; height:50px; margin: auto; background-color: #b8d8be;}
+  nav ul li {float: left; line-height:45px; margin-right: 30px;}
+  nav ul li:first-child {margin-left: 20px;}
+  
+  /* section */
+  section{width:1000px; height: 600px; margin:auto; background-color: #faebd7; }
+  section h3{text-align: center; padding: 50px 0 50px 0;}
+  section table{width: 500px; margin: auto;}
+  #MainSection{padding-left: 10px;}
+  table, th, td{border:1px solid #666;}
+  th,td{padding: 10px;}
+  footer{width:1000px; height:100px; margin: auto; background-color:#ff993c;}
+  footer p{color: white; text-align: center; line-height: 90px;}
+  </style>
