@@ -1,3 +1,5 @@
+// CRUD ( Creat, Read, Update, Deleete ) , Realational DBMS 흠..
+
 package com.it.main;
 
 import java.sql.Connection;
