@@ -19,7 +19,7 @@ public class NaverTest {
 			String url = "https://news.naver.com/main/list.naver?mode=LS2D&sid2=249&sid1=102&mid=shm&date=20220502&page=";//+i;
 
 			Document doc = Jsoup.connect(url).get();
-					System.out.println(doc);
+//					System.out.println(doc);
 //
 //			Elements elements = doc.getElementsByAttributeValue("class", "list_body newsflash_body");
 //			//		System.out.println(elements.get(0));
