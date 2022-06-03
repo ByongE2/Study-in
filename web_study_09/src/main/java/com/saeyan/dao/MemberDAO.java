@@ -105,7 +105,7 @@ public class MemberDAO {
 	}//getMember
 	public int confirmID(String userid) {
 		int result = -1;
-		String sql = "select userid from member where userid=?";
+		String sql = "select userid from member where userid=?"; //아이디가 검색된다면, 데이터 중복. 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -130,13 +130,12 @@ public class MemberDAO {
 				e.printStackTrace();
 			}
 		}
-		
-		
 		return result;
 	}//confirmID
 	public int insertMember(MemberVO mVo) {
 		int result = -1;
-		String sql = "insert into member values(?,?,?,?,?,?)";
+//		String sql = "insert into member values(?,?,?,?,?,?)";
+		String sql = "insert into member(name,userid,pwd,email,phone,admin)" + "values(?,?,?,?,?,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -165,4 +164,36 @@ public class MemberDAO {
 		return result;
 	}//insertMember
 	
+	public int updateMember(MemberVO mVo) {
+		// db연결 > 업데이트 쿼리 적용한거. result 갯수 반환.
+		int result = -1;
+		String sql = "update member set pwd=?, email=?, phone=?, admin=? where userid=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, mVo.getPwd());
+			pstmt.setString(2, mVo.getEmail());
+			pstmt.setString(3, mVo.getPhone());
+			pstmt.setInt(4, mVo.getAdmin());
+			pstmt.setString(5, mVo.getUserid());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if( pstmt != null) pstmt.close();
+				if( conn != null) conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}//updateMember
 }//end of MemberDAO

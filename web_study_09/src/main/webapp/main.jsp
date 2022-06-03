@@ -17,7 +17,8 @@
 			<tr>
 				<td colspan="2" align="center">
 					<input type = "submit" value="로그아웃">
-					<input type = "button" value="회원정보변경" onlick="#">
+					<input type = "button" value="회원정보변경" onclick="location.href='memberUpdate.do?userid=${loginUser.userid}'">
+				</td>	 
 			</tr>
 		</table>
 	
