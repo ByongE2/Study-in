@@ -56,7 +56,7 @@ public class BoardDAO {
 			int rowSize = 10;
 				// 10*1 - 10 = 0, ... , 10*2-10=10 , ... , 10*3-10=20 .....
 			int start = (rowSize*page) - rowSize;
-			String sql = "select no, subject, name, DATE_FORMAT(regdate,'%y-%m-%d'), hit"
+			String sql = "select no, subject, name, DATE_FORMAT(regdate,'%y-%m-%d'), hit " // 줄바꿈 시 마지막 공백 습관 들이자.
 						+ "from jspBoard order by no desc limit ?,?";
 			//3. 전송
 			pstmt = conn.prepareStatement(sql);
@@ -115,16 +115,157 @@ public class BoardDAO {
 		return total;
 	}//boardTotalpage
 	
+	//3. 새 글 입력. 글쓰기> 입력
+	public void boardInsert(BoardVO vo) {
+		try {
+			getConnection();
+//			String sql = "insert into jspBoard values(?,?,?,?,now())";
+			String sql = "insert into jspBoard(name,subject,content,pwd,regdate) " + "values(?,?,?,?,now())";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getSubject());
+			pstmt.setString(3, vo.getContent());
+			pstmt.setString(4, vo.getPwd());
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+	}//boardInsert
 	
+	//상세보기(조회수 담당)
+	public BoardVO boardDetailData(int no) {
+		BoardVO vo = new BoardVO();
+		
+		try {
+			getConnection();
+			//hit, 조회수 증가
+			String sql = "update jspBoard set hit = hit+1 where no = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+			
+			sql = "select no, name, subject, content, DATE_FORMAT(regdate,'%Y-%m-%d'), hit from jspBoard where no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				vo.setNo(rs.getInt(1));
+				vo.setName(rs.getString(2));
+				vo.setSubject(rs.getString(3));
+				vo.setContent(rs.getString(4));
+				vo.setDbday(rs.getString(5));
+				vo.setHit(rs.getInt(6));
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return vo;
+	}//boardDetailDate
 	
+	//5. 게시판 수정하기(Update)
+	public BoardVO boardUpdateData(int no) {
+		BoardVO vo = new BoardVO();
+		
+		try {
+			getConnection();
+			
+			String sql = "select no, name, subject, content, DATE_FORMAT(regdate,'%Y-%m-%d'), hit from jspBoard where no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				vo.setNo(rs.getInt(1));
+				vo.setName(rs.getString(2));
+				vo.setSubject(rs.getString(3));
+				vo.setContent(rs.getString(4));
+				vo.setDbday(rs.getString(5));
+				vo.setHit(rs.getInt(6));
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return vo;
+	}//boardUpdateData
 	
+	public boolean boardUpdate(BoardVO vo) {
+		boolean check = false;
+		
+		try {
+			getConnection();
+			
+			String sql = "select pwd from jspBoard where no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getNo());
+			ResultSet rs = pstmt.executeQuery();
+			String check_pwd="";
+			
+			if(rs.next()) {
+				check_pwd = rs.getString(1);
+				
+				rs.close();
+			}
+			if(check_pwd.equals(vo.getPwd())) {
+				check = true;
+				sql = "update jspBoard set name=?, subject=?, content=? where no=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, vo.getName());
+				pstmt.setString(2, vo.getSubject());
+				pstmt.setString(3, vo.getContent());
+				pstmt.setInt(4, vo.getNo());
+				pstmt.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return check;
+	}//boardUpdate
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	public int boadrDelete(int no, String pwd) {
+		int result = 0;
+		
+		try {
+			//연걸
+			getConnection();
+			//sql문장
+			String sql = "select pwd from jspBoard where no=?";
+			//전송
+			pstmt = conn.prepareStatement(sql);
+			//빈칸 채우기
+			pstmt.setInt(1, no);
+			//실행
+			ResultSet rs = pstmt.executeQuery();
+			String check_pwd="";
+			
+			if(rs.next()) {
+				check_pwd = rs.getString(1);
+				
+				rs.close();
+			}
+			if(check_pwd.equals(pwd)) {
+				result = 1;
+				sql = "delete from jspBoard where no=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, no);
+				pstmt.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return result;
+	}//boadrDelete
 }
