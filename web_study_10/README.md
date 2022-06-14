@@ -10,7 +10,7 @@ web_study_10
 7.jstl.jar
 8.ojdbc6.jar
 9.standard.jar
-10.cos.jar
+*10.cos.jar
 11.lombok-1.18.24.jar
 
 
@@ -41,5 +41,6 @@ DBCP
               url="jdbc:oracle:thin:@127.0.0.1:1521:mysid"
               username="scott" password="tiger" maxTotal="20" maxIdle="10"
               maxWaitMillis="-1"/>
+              
 
 

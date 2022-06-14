@@ -22,7 +22,7 @@ public class ProductWriteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/productWrite.jsp");
 		dispatcher.forward(request, response);
-
+//		response.sendRedirect("/productWrite.jsp");
 	}//doGet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
