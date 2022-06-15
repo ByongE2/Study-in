@@ -14,7 +14,6 @@ import com.saeyan.dto.MemberVO;
 
 public class MemberDAO {
 	private MemberDAO() {}
-	
 	//싱글톤 패턴으로 객체 생성
 	private static MemberDAO instance = new MemberDAO();
 	
@@ -27,7 +26,6 @@ public class MemberDAO {
 		DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
 		Connection conn = ds.getConnection();
 		return conn;
-		
 	}
 	public int userCheck(String userid, String pwd) {
 	

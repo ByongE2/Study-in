@@ -1,39 +1,41 @@
 package com.saeyan.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.saeyan.dao.MemberDAO;
+import com.saeyan.controller.action.Action;
 
-/**
- * Servlet implementation class idCheckServlet
- */
-@WebServlet("/idCheck.do")
-public class idCheckServlet extends HttpServlet {
+@WebServlet("/BoardServlet")
+public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    public BoardServlet() {
+        super();
+    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userid = request.getParameter("userid");
+		String command = request.getParameter("command");
+		System.out.println("BoardServlet에서 요청을 받음을 확인 : " + command);
 		
-		MemberDAO mDao = MemberDAO.getInstance();
-						//클래명.메서드.
-		int result = mDao.confirmID(userid);
+		ActionFactory af = ActionFactory.getInstance();
+		Action action = af.getAction(command);
 		
-		request.setAttribute("userid", userid);
-		request.setAttribute("result", result);
+		if(action != null) {
+			action.execute(request, response);
+		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("member/idcheck.jsp");
-		dispatcher.forward(request, response);
-	}
+		
+	
+	}//doGet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
 		doGet(request, response);
-	}
+	}//doPost
 
 }
