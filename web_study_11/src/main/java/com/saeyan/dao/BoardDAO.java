@@ -57,7 +57,7 @@ public class BoardDAO {
 	}//selectAllBoard
 	
 	public void insertBoard(BoardVO bVo) {
-		String sql = "insert into board(num, pass, name, email, title, content) valuse(board_seq.nextval, ?, ?, ?, ?, ?)";
+		String sql = "insert into board(num, name, email, pass, title, content) values(board_seq.nextval, ?, ?, ?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -66,12 +66,11 @@ public class BoardDAO {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bVo.getName());
-			pstmt.setString(2, bVo.getPass());
-			pstmt.setString(3, bVo.getEmail());
+			pstmt.setString(2, bVo.getEmail());
+			pstmt.setString(3, bVo.getPass());
 			pstmt.setString(4, bVo.getTitle());
 			pstmt.setString(5, bVo.getContent());
-			
-			pstmt.executeUpdate(sql);
+			pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally{
@@ -79,8 +78,10 @@ public class BoardDAO {
 		}
 	}// insertBoard
 	
+	
+	
 	public void updateReadCount(String num) {
-		String sql = "update board set readcount = readcount+1 where = num=?";
+		String sql = "update board set readcount = readcount+1 where num=?";
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -114,14 +115,14 @@ public class BoardDAO {
 			if(rs.next()) {
 			bVo = new BoardVO();
 			
-			bVo.setNum(rs.getInt(1));
+			bVo.setNum(rs.getInt("num"));
 			bVo.setName(rs.getString("name"));
-			bVo.setEmail(rs.getString(3));
-			bVo.setPass(rs.getString(4));
-			bVo.setTitle(rs.getString(5));
-			bVo.setContent(rs.getString(6));
-			bVo.setReadcount(rs.getInt(7));
-			bVo.setWritedate(rs.getTimestamp(8));
+			bVo.setEmail(rs.getString("email"));
+			bVo.setPass(rs.getString("pass"));
+			bVo.setTitle(rs.getString("title"));
+			bVo.setContent(rs.getString("content"));
+			bVo.setReadcount(rs.getInt("readcount"));
+			bVo.setWritedate(rs.getTimestamp("writedate"));
 			}
 		}catch(SQLException e) {
 			
@@ -132,7 +133,7 @@ public class BoardDAO {
 	}// selectOneBoardByNum
 	
 	public void updateBoard(BoardVO bVo) {
-		String sql = "update board set name=?, email=?, pass=?, title=?, content=?, where num=?";
+		String sql = "update board set name=?, email=?, pass=?, title=?, content=? where num=?";
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -141,8 +142,8 @@ public class BoardDAO {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bVo.getName());
-			pstmt.setString(3, bVo.getEmail());
-			pstmt.setString(2, bVo.getPass());
+			pstmt.setString(2, bVo.getEmail());
+			pstmt.setString(3, bVo.getPass());
 			pstmt.setString(4, bVo.getTitle());
 			pstmt.setString(5, bVo.getContent());
 			pstmt.setInt(6, bVo.getNum());
@@ -155,6 +156,7 @@ public class BoardDAO {
 		}
 		
 	}//updateBoard
+	
 	
 	public BoardVO checkPassWord(String pass, String num) {
 		String sql = "select * from board where pass=? and num=?";

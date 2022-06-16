@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>게시판</title>
 <link rel="stylesheet" type="text/css" href="css/shopping.css">
-<script type="text/javascript" src="script/board.js"></script>
+<script type="text/javascript" src="script/board.js?after"></script>
 </head>
 <body>
 <div id="wrap" align="center">
@@ -22,7 +22,7 @@
 		
 		<tr>
 			<th>비밀번호</th>
-			<td><input type="text" name="name"> * 필수 (게시물 수정 삭제시 필요합니다.)</td>
+			<td><input type="password" name="pass"> * 필수 (게시물 수정 삭제시 필요합니다.)</td>
 		</tr>
 		
 		<tr>

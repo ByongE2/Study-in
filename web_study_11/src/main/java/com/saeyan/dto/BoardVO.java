@@ -22,9 +22,9 @@ import lombok.ToString;
 public class BoardVO {
 //	
 	private Integer num;
-	private String pass;
 	private String name;
 	private String email;
+	private String pass;
 	private String title;
 	private String content;
 	private Integer readcount;

@@ -3,19 +3,15 @@ function boardCheck(){
         alert("작성자를 입력하세요.")
         return false;
     }
-}
-function boardCheck(){
     if (document.frm.pass.value.length == 0) {
         alert("비밀번호를 입력하세요.")
         return false;
     }
-}
-function boardCheck(){
     if (document.frm.title.value.length == 0) {
-        alert("제목를 입력하세요.")
+        alert("제목dd를 입력하세요.")
         return false;
     }
-    return false;
+    return true;
 }
 
 function open_win(url, name){
@@ -27,5 +23,5 @@ function passCheck(){
         alert("비밀번호를 입력하세요.");
         return false;
     }
-    return false;
+    return true;
 }

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
-<link rel="stylesheet" type="text/css" href="css/shopping.css">
+<link rel="stylesheet" type="text/css" href="css/shopping.css?after">
 </head>
 <body>
 <div id="wrap" align="center">
