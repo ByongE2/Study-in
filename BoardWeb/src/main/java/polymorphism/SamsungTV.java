@@ -1,0 +1,23 @@
+package polymorphism;
+
+public class SamsungTV implements TV {
+	SamsungTV(){
+		System.out.println(">>>삼성티비 객체 생성");
+	}
+	@Override
+	public void powerOn() {
+		System.out.println("삼성티비 -- 전원 켠다.");
+	}
+	@Override
+	public void powerOff() {
+		System.out.println("삼성티비 -- 전원 끈다.");
+	}
+	@Override
+	public void volumeUp() {
+		System.out.println("삼성티비 -- 소리 올린다.");
+	}
+	@Override
+	public void volumeDown() {
+		System.out.println("삼성티비 -- 소리 내린다.");
+	}
+}
