@@ -38,13 +38,14 @@ public class TVUser {
 		// 1. 스프링 컨테이너 구동.
 		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
 		// 2. 스프링 컨테이너로부터 필요한 객체 lookup
-		TV tv = (TV)factory.getBean("tv");
+		TV tv = (TV)factory.getBean("lgTV");
 //		TV tv = (TV)factory.getBean("tv2", TV.class);
 		// lazy-init="true" 하면. 객체 사용할 때 객체 생성.
 		tv.powerOn();
 		tv.volumeUp();
 		tv.volumeDown();
 		tv.powerOff();
+		
 		// 3. 스프링 컨테이너 종료
 		//close 업으면 destroy-method 실행 안된다.
 		factory.close();
