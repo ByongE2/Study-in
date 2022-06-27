@@ -11,8 +11,6 @@ public class Calc {
 		num1 = x;
 		num2 = y;
 	}
-		
-		
 	int add() {
 		return num1 + num2;
 	}

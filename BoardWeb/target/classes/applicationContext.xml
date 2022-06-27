@@ -10,34 +10,44 @@
 
 	<context:component-scan base-package="com.springbook.biz"/>
 	
-	<bean id="before" class="com.springbook.biz.common.BeforeAdvice"/>
+	
+	<!-- <bean id="before" class="com.springbook.biz.common.BeforeAdvice"/>
 	<bean id="afterReturning" class="com.springbook.biz.common.AfterReturningAdvice"/>
 	<bean id="afterThrowing" class="com.springbook.biz.common.AfterThrowingAdvice"/>
 	<bean id="after" class="com.springbook.biz.common.AfterAdvice"/>
 	<bean id="around" class="com.springbook.biz.common.AroundAdvice"/>
-	<bean id="log" class="com.springbook.biz.common.Log4jAdvice"/>
+	<bean id="log" class="com.springbook.biz.common.Log4jAdvice"/> -->
 	
-	<aop:config>
+	
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<!-- <aop:config>
 		<aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
 		<aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.get*(..))"/>
 
+		<aop:aspect ref="around">
+			<aop:around method="aroundLog" pointcut-ref="allPointcut"/>
+		
+		</aop:aspect>
+		
+		
 		<aop:aspect ref="afterThrowing">
 			<aop:after-throwing method="exceptionLog" pointcut-ref="allPointcut" throwing="exceptObj"/>
 		</aop:aspect>
 		
-		<!-- <aop:aspect ref="afterReturning">
+		<aop:aspect ref="afterReturning">
 			<aop:after-returning method="afterLog" pointcut-ref="getPointcut" returning="returnObj"/>
-		</aop:aspect> -->
+		</aop:aspect>
 
-		<!-- <aop:aspect ref="afterThrowing">
+		<aop:aspect ref="afterThrowing">
 			<aop:after-throwing pointcut-ref="allPointcut" method="exceptionLog"/>
-		</aop:aspect> -->
+		</aop:aspect>
 		
-		<!-- <aop:aspect ref="after">
+		<aop:aspect ref="after">
 			<aop:after method="finallyLog" pointcut-ref="allPointcut"/>
-		</aop:aspect> -->
+		</aop:aspect>
 		
-	</aop:config>
+	</aop:config> -->
 	
 	
 	
