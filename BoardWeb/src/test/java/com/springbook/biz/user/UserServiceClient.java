@@ -13,7 +13,7 @@ public class UserServiceClient {
 		
 		//로그인 기능 테스트
 		UserVO vo = new UserVO();
-		vo.setId("tset");
+		vo.setId("test");
 		vo.setPassword("test123");
 		
 		UserVO user = userService.getUser(vo);
