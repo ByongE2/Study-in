@@ -20,6 +20,19 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
+	<!-- ContextLoaderListener 비즈니스 레이어 읽어오기위해서.  -->
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	
+	<!-- 다른경로에 있는 스프링 설정 파일 읽어오기 위해 경로 추가. 여기선 applicationContext.xml 읽어오기위해. src/main/resources에있는거 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
 	<!-- 한글 필터 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
