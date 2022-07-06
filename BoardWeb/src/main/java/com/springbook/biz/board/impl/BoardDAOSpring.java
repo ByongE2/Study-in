@@ -26,6 +26,8 @@ import com.springbook.biz.board.BoardVO;
 		private final String BOARD_DELETE = "delete board where seq=?";
 		private final String BOARD_GET = "select * from board where seq=?";
 		private final String BOARD_LIST = "select * from board order by seq desc";
+		private final String BOARD_LIST_T = "select * from board where title like '%' ||?|| '%' order by seq desc";
+		private final String BOARD_LIST_C = "select * from board where content like '%' ||?|| '%' order by seq desc";
 		
 //		@Autowired //주로 변수에 사용하나, 메서드에 선언해도 동작한다.
 //		//메서드를 스프링컨테이너가 자동으로 호출하고, 매개변수 타입을 확인해서, 타입의 객체가 메모리에 존재하면 그 객체(DataSource)를 인자로 넘겨준다.
@@ -66,9 +68,13 @@ import com.springbook.biz.board.BoardVO;
 		// 글 목록 조회
 		public List<BoardVO> getBoardList(BoardVO vo){
 			System.out.println("===> Spring JDBC로 getBoardList() 기능 처리");
-
-				
-			return jdbcTemplate.query(BOARD_LIST, new BoardRowMapper());
+			Object[] args = {vo.getSearchKeyword()};
+			if(vo.getSearchCondition().equals("TITLE")) {
+				return jdbcTemplate.query(BOARD_LIST_T, args, new BoardRowMapper());
+			}else if(vo.getSearchCondition().equals("CONTENT")){
+				return jdbcTemplate.query(BOARD_LIST_C, args, new BoardRowMapper());
+			}
+			return null;
 		}
 		
 	}//BoardDAOSpring

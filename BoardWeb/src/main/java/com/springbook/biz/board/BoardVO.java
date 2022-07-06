@@ -2,6 +2,8 @@ package com.springbook.biz.board;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -13,7 +15,8 @@ public class BoardVO {
 	private String content;
 	private Date regDate;
 	private int cnt;
-//	private String searchCondition;
-//	private String searchKeyword;
+	private String searchCondition;
+	private String searchKeyword;
+	private MultipartFile uploadFile;
 	
 }
