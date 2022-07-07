@@ -3,6 +3,7 @@ package com.springbook.view.board;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
-import com.springbook.biz.board.impl.BoardDAO;
 
 @Controller
 @SessionAttributes("board") // Model에 "board" 이름 저장된 데이터 있으면, 그 데이터를 세션에도 자동으로 저장하라는 설정.애너테이션.
@@ -27,6 +27,16 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	//getBoardList()와 같음. Jackson2변환기 사용했기 때문에, JSON으로 변환되어 HTTP 응답 보디에 설정되게하는 메서드.
+	@RequestMapping("/dataTransform.do")
+	@ResponseBody	//자바 객체를 Http 응답 포로토콜의 body로 변환하기 위해 사용.
+	public List<BoardVO> dataTransfrom(BoardVO vo){
+		vo.setSearchCondition("TITLE");
+		vo.setSearchKeyword("");
+		List<BoardVO> boardList = boardService.getBoardList(vo);
+		return boardList;
+	}
 	
 	//글 등록
 	@RequestMapping(value = "/insertBoard.do")
