@@ -1,6 +1,7 @@
 package com.springbook.biz.board;
 
 import java.sql.Date;
+import java.util.Objects;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,7 @@ public class BoardVO {
 	public int getSeq() {
 		return seq;
 	}
+	
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}

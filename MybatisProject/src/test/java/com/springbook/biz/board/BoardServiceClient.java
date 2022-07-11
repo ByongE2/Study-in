@@ -25,6 +25,7 @@ public class BoardServiceClient {
 //		for(BoardVO board : boardList) {
 			for(BoardVO board : boardListTest) {
 			System.out.println("--->" + board.toString());
+			
 		}
 		
 	}
