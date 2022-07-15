@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 
 <%@ include file="../includes/header.jsp" %>
 
@@ -16,12 +16,11 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Board List Page
-                           <button id="regBtn" type="button" class="btn btn-xs pull-right">버튼</button>
+                            DataTables Advanced Tables
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" >
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
                                         <th>#번호</th>
@@ -31,17 +30,18 @@
                                         <th>변경일</th>
                                     </tr>
                                 </thead>
-                                <c:forEach items="${list}" var="board">
+                                <tbody>
                                     <tr class="odd gradeX">
-                                        <td><c:out value="${board.bno}"/></td>
-                                        <td><c:out value="${board.title}"/></td>
-                                        <td><c:out value="${board.writer}"/></td>
-                                        <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}"/></td>
-                                        <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}"/></td>
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 4.0</td>
+                                        <td>Win 95+</td>
+                                        <td class="center">4</td>
+                                        <td class="center">X</td>
                                     </tr>
-                                </c:forEach>    
+                                </tbody>
                             </table>
                             <!-- /.table-responsive -->
+                            
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -50,5 +50,5 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-           
- <%@ include file="../includes/footer.jsp" %>
+         
+ <%@ include file="../includes/footer.jsp" %>       
