@@ -17,7 +17,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            Board List Page
-                           <button id="regBtn" type="button" class="btn btn-xs pull-right">버튼</button>
+                           <button id="regBtn" type="button" class="btn btn-xs pull-right">등록화면</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -34,7 +34,11 @@
                                 <c:forEach items="${list}" var="board">
                                     <tr class="odd gradeX">
                                         <td><c:out value="${board.bno}"/></td>
-                                        <td><c:out value="${board.title}"/></td>
+                                        <td>
+                                        	<a href="/board/get?bno=<c:out value="${board.bno}"/>">
+                                        		<c:out value="${board.title}"/>
+                                        	</a>
+                                        </td>
                                         <td><c:out value="${board.writer}"/></td>
                                         <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}"/></td>
                                         <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}"/></td>
@@ -42,13 +46,67 @@
                                 </c:forEach>    
                             </table>
                             <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-           
- <%@ include file="../includes/footer.jsp" %>
+                            <!--Modal 창 추가 -->
+				
+				<div id="myModal" class="modal" tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Modal title</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								처리가 완료됬습니다.
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary">Save
+									changes</button>
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Modal 창 닫기 -->
+
+
+
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<script>
+	$(document).ready(function() {
+		var result = '<c:out value="${result}"/>';
+		console.log("result" + result);
+		
+		checkModal(result);
+		/* unDo 했을 때 모달 창도 같이 뜨는거, stack(page남은 기록들이 stack으로 저장)에서 지우는 법*/
+		history.replaceState({},null,null);
+		
+		function checkModal(result){
+			if(result === '' || history.state){
+				return ;				
+			}
+			
+			if(parseInt(result) > 0){
+				$(".modal-body").html("게시글 " + parseInt(result) + "번이 등록되었습니다.");
+			}
+			
+			$("#myModal").modal("show");
+		}
+		
+		$("#regBtn").on("click",function(){
+			self.location = "/board/register";
+		});
+	});
+</script>
+
+<%@ include file="../includes/footer.jsp"%>

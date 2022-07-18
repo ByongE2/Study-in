@@ -18,8 +18,10 @@ public class BoardServiceImple implements BoardService{
 	
 	@Override
 	public void register(BoardVO vo) {
-		log.info("registerㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-		mapper.insert(vo);
+		log.info("registerㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ......................");
+//		 mapper.insert(vo); 
+		mapper.insertSelectKey(vo);
+
 	}
 
 	@Override

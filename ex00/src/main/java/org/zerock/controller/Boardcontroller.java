@@ -34,16 +34,16 @@ public class Boardcontroller {
 		log.info("등록 ㅡㅡㅡㅡㅡㅡㅡ: " + vo);
 		service.register(vo);
 		rttr.addFlashAttribute("result", vo.getBno());
-		return "redirect: /board/list";
+		return "redirect:/board/list";
 	}//register
 	
-	@GetMapping("get")
+	@GetMapping({"get", "/modify"})
 	public void get(Long bno, Model model) {
-		log.info("getㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		log.info("ㅡㅡㅡㅡㅡㅡㅡㅡget or modifyㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		model.addAttribute("board", service.get(bno));
 	}//get
 	
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	public String remove(Long bno, RedirectAttributes rttr) {
 		log.info("삭제ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ: " + bno);
 		
