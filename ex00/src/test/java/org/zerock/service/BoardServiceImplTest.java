@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
-import org.zerock.service.BoardService;
+import org.zerock.domain.Criteria;
 
 import lombok.extern.log4j.Log4j;
 
@@ -57,8 +57,9 @@ public class BoardServiceImplTest {
 
 	@Test
 	public void testGetList() {
-		log.info("겟리스트테스트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-		service.getList();
+		log.info("겟리스트테스트ㅡㅡㅡㅡ페이징 후ㅡㅡㅡㅡㅡㅡ");
+//		service.getList();
+		service.getList(new Criteria(2,10));
 	}
 	
 	

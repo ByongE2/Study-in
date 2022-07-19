@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.PageDTO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -22,14 +23,14 @@ public class BoardMapperTest {
 	@Autowired
 	private BoardMapper mapper;
 	
-	@Test
-	public void testGetList() {
-//		mapper.getList().forEach(board -> log.info(board)); //스트림
-		//for문으로 바꿔보자..
-		for(BoardVO vo : mapper.getList()) {
-			log.info(vo);
-		}
-	}//testGetList
+//	@Test
+//	public void testGetList() {
+////		mapper.getList().forEach(board -> log.info(board)); //스트림
+//		//for문으로 바꿔보자..
+//		for(BoardVO vo : mapper.getList()) {
+//			log.info(vo);
+//		}
+//	}//testGetList
 	
 	@Test
 	public void testInsert() {
@@ -87,6 +88,15 @@ public class BoardMapperTest {
 //		cri.setAmount(10);
 		List<BoardVO> list = mapper.getListWithPagging(cri);
 		log.info(list);
+	}
+	
+	@Test
+	public void tehstPageDTO() {
+		Criteria cri = new Criteria();
+		PageDTO pageDTO = new PageDTO(cri, 315);
+		cri.setPageNum(15);
+		cri.setAmount(10);
+		log.info("pageDTO : " + pageDTO);
 	}
 	
 	

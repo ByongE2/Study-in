@@ -84,4 +84,14 @@ public class BoardControllerTest {
 		log.info(resultPage);
 	}
 	
+	@Test
+	public void testListPaging() throws Exception {
+		log.info(		 							   //겟방식 포스트방식에 따라 바뀌는부분
+				mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
+				.param("pageNum", "5")
+				.param("amount", "15"))
+				.andReturn().getModelAndView().getModelMap()
+				); //log.info
+	}
+	
 }
