@@ -42,9 +42,12 @@
                         		onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'">modify</button>
                         		<button data-oper='list' class="btn btn-default" onclick="location.href='/board/list' ">
                         		>List</button> --%>
-                        		
+                        								<!-- modify가는건데, 아래 j쿼리에서 list 클릭하면 "/board/list" 바꿔버림. -->
                         		<form id='operForm' action = "/board/modify" method="get">
                         			<input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno}"/>'>
+                        			<!-- list 누르면 첫페이지가 아닌 원래 페이지로 가기위해 여기랑+컨트롤러에서 매개변수 cri 추가 -->
+                        			<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+                        			<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
                         		</form>
                         </div>
                         <!-- /.panel-body -->

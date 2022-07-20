@@ -3,6 +3,7 @@ package org.zerock.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -27,8 +28,10 @@ public class Boardcontroller {
 		log.info("리스트 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		log.info("cri : " + cri);
 		log.info("listㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		int total = service.getTotal(cri);
+		log.info("total count : " + total);
 		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri,315));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}//list
 	
 	@GetMapping("/register")
@@ -43,31 +46,34 @@ public class Boardcontroller {
 	}//register
 	
 	@GetMapping({"get", "/modify"})
-	public void get(Long bno, Model model) {
+	public void get(@ModelAttribute("cri")Criteria cri, Long bno, Model model) {
 		log.info("ㅡㅡㅡㅡㅡㅡㅡㅡget or modifyㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		model.addAttribute("board", service.get(bno));
 	}//get
 	
 	@PostMapping("/remove")
-	public String remove(Long bno, RedirectAttributes rttr) {
+	public String remove(Long bno, @ModelAttribute("cri")Criteria cri, RedirectAttributes rttr) {
 		log.info("삭제ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ: " + bno);
 		
 		if(service.remove(bno) == 1) {  // 삭제가 되었다면 , 반환타입이 int임.
 			rttr.addFlashAttribute("result", "secess");
 		}
-		
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
 		return "redirect:/board/list";
 	}
 	
-	@PostMapping("modify")
-	public String modify(BoardVO vo, RedirectAttributes rttr) {
+	@PostMapping("/modify")
+	public String modify(BoardVO vo, @ModelAttribute("cri")Criteria cri, RedirectAttributes rttr) {
 		
 		log.info("수정ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + vo);
 		
 		if(service.modify(vo) == 1) {  // 수정이 되었다면 , 반환타입이 int임.
 			rttr.addFlashAttribute("result", "secess");
 		}
-		
+		//리다이렉트로 해주고있어서, rttr에 정보 담는다. 수정 누르면 수정 후에 기존 list페이지로.. mod~.jsp hidden이랑 연계해서.
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
 		return "redirect:/board/list";
 	}
 	

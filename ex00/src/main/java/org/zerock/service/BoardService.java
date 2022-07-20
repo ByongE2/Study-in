@@ -13,6 +13,7 @@ public interface BoardService {
 	public int remove(Long bno);	//삭제
 //	public List<BoardVO> getList();	//전체 읽기
 	public List<BoardVO> getList(Criteria cri);	//전체 읽기
+	public int getTotal(Criteria cri);	// 데이터 총 갯수 가져오기.
 	
 	
 }

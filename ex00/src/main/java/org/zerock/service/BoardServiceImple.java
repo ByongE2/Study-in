@@ -58,6 +58,13 @@ public class BoardServiceImple implements BoardService{
 		log.info("겟리스트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		return mapper.getListWithPagging(cri);
 	}
+	
+	@Override
+	public int getTotal(Criteria cri) {
+		log.info("get total count");
+		return mapper.getTotalCount(cri);
+	}
+	
 
 	
 }

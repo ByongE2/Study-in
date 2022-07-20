@@ -1,6 +1,7 @@
 package org.zerock.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
@@ -25,6 +26,11 @@ public interface BoardMapper {
 	public int delete(Long bno);
 	
 	public int update(BoardVO vo);
+	
+	public int getTotalCount(Criteria cri);
+	
+	//검색 조건
+	public List<BoardVO> searchTest(Map<String, Map<String,String>> map); // Map, 안에 Map
 	
 	
 	
