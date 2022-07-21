@@ -83,11 +83,16 @@ public class BoardMapperTest {
 		log.info("update : " +  mapper.update(vo)); 
 	}
 	
+	
+	//결과가 어떤건 나오고 어떤건안나옴. 쿼리문 문제있는 듯........?
 	@Test
-	public void testPaging() {
+	public void testSearchPaging() {
 		Criteria cri = new Criteria();
 //		cri.setPageNum(3);
 //		cri.setAmount(10);
+//		cri.setType("T"); // title
+		cri.setType("TCW"); // title,content,writer (Criteria.java에 split 되어있음)
+		cri.setKeyword("돈가스"); // 제목,내용,저자 중에 "제목"이 있냐.
 		List<BoardVO> list = mapper.getListWithPagging(cri);
 		log.info(list);
 	}
@@ -115,7 +120,15 @@ public class BoardMapperTest {
 		log.info(list);
 	}
 	
-	
+	@Test
+	public void testTotal() {
+		Criteria cri = new Criteria();
+		cri.setType("T");
+		cri.setKeyword("ja");
+		int count = mapper.getTotalCount(cri);
+		log.info("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		log.info("count : " + count);
+	}
 	
 	
 	

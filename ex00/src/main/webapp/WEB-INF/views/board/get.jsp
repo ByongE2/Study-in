@@ -48,6 +48,9 @@
                         			<!-- list 누르면 첫페이지가 아닌 원래 페이지로 가기위해 여기랑+컨트롤러에서 매개변수 cri 추가 -->
                         			<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
                         			<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
+                        			<!-- 상세보기 갔다가 list 누르면 원래있던 검색 페이지로.-->
+                        			<input type="hidden" name="type" value='<c:out value="${cri.type}"/>'>
+                        			<input type="hidden" name="keyword" value='<c:out value="${cri.keyword}"/>'>
                         		</form>
                         </div>
                         <!-- /.panel-body -->

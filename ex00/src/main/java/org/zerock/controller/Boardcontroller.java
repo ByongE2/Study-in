@@ -60,6 +60,10 @@ public class Boardcontroller {
 		}
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
+		//삭제 후 리턴 페이지 관리.
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
 		return "redirect:/board/list";
 	}
 	
@@ -74,6 +78,9 @@ public class Boardcontroller {
 		//리다이렉트로 해주고있어서, rttr에 정보 담는다. 수정 누르면 수정 후에 기존 list페이지로.. mod~.jsp hidden이랑 연계해서.
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
+		//수정 후 리턴 페이지 관리
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		return "redirect:/board/list";
 	}
 	
