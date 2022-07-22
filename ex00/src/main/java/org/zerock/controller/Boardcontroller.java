@@ -34,6 +34,9 @@ public class Boardcontroller {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}//list
 	
+	//RedirectAttributes 와 Model 차이. 인지.
+	
+	
 	@GetMapping("/register")
 	public void register() {}
 	
@@ -45,7 +48,7 @@ public class Boardcontroller {
 		return "redirect:/board/list";
 	}//register
 	
-	@GetMapping({"get", "/modify"})
+	@GetMapping({"/get", "/modify"})
 	public void get(@ModelAttribute("cri")Criteria cri, Long bno, Model model) {
 		log.info("ㅡㅡㅡㅡㅡㅡㅡㅡget or modifyㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		model.addAttribute("board", service.get(bno));
