@@ -1,3 +1,5 @@
+// JS객체(메모리상) > JSON.stringify(문자열..text로)-jackson-databind > java객체 >>> 문자열-jackson-databind > JSON.parse() > JS객체  
+
 package org.zerock.controller;
 
 
@@ -87,6 +89,7 @@ public class RestSampleController {
 		return map;
 	}//getMap
 	
+	//상태 코드로 함께 전송
 	@GetMapping(value = "/check", params = {"height", "weight"})
 		   //반환할 때 vo만 주는게 아니라, 상태코드도 주기 위해서 사용.
 	public ResponseEntity<SampleVO> check(Double height, Double weight){
@@ -115,6 +118,9 @@ public class RestSampleController {
 	@PostMapping("/ticket")			// json데이터를 java객체로 변환해주는 애너테이션.
 	public Ticket convert(@RequestBody Ticket ticket) {
 		log.info("convert : " + ticket);
+		ticket.setTno(200);
+		ticket.setOwner("홍길동");
+		ticket.setGrade("C등급");
 		return ticket;
 	}
 	
