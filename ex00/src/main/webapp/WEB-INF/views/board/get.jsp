@@ -63,8 +63,46 @@
 
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 <script>
+
+	var bnoValue = '<c:out value="${board.bno}"/>';
+	
+	/* replyService.add(
+		{reply : "JS TEST2", replyer:"tester2", bno: bnoValue},
+		function(result){
+			alert("RESULT : " + result);
+		}
+	) */
+	
+	/* replyService.getList(
+		{bno: bnoValue, page:1},
+		function(list){
+			for(var i = 0, len = list.length || 0; i<len; i++){
+				console.log(list[i]);
+			}
+		}
+	) */
+	
+	/* replyService.remove(42, function(result){
+		console.log(result);
+		if(result === "success"){
+			alert("Removed");
+		}
+	},
+		function(err){
+			alert("Error");
+		}
+	);  */
+	
+	replyService.update(
+			{rno: 41, reply: '수정내용..555555'},
+			function(result){
+				alert("수정 완료");
+			}
+		);
+
 	$(document).ready(function(){
-		console.log(replyService.add());
+		console.log("JS TEST");
+		
 	});
 </script>
             
