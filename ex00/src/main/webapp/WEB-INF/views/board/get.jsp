@@ -60,11 +60,86 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+  
+<!-- 댓글----------------------------------------------------------------------- -->
+<style type="text/css">
+	.chat{
+		background: #eee;
+		cursor: pointer;
+	}
+</style>
+			<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Board Read Page</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <i class="fa fa-comments fa-fw"></i>Ready
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                        	<ul class="chat">
+                        		<li class="left clearfix" data-rno='12'>
+                        			<div>
+	                        			<div class="header">
+	                        				<strong class="primary-font">user00</strong>
+	                        				<small class="pull-right text-muted">2022-01-01 12:12</small>
+	                        			</div>
+	                        			<p>댓글 테스트</p>
+	                        		</div>	
+                        		</li>
+                        	</ul>
+                        		
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
 
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 <script>
 
-	var bnoValue = '<c:out value="${board.bno}"/>';
+	
+$(document).ready(function(){
+    var bnoValue = '<c:out value="${board.bno}"/>';
+    var replyUL =$(".chat");
+    console.log("replyUL : " + replyUL);
+    
+    showList(1);
+    function showList(page){
+       replyService.getList(
+          {bno:bnoValue, page:page||1},
+          function(list){
+             var str="";
+             if(list==null||list.length==0){
+                replyUL.html("");
+                return;
+             }
+             
+             for(var i=0,len=list.length||0;i<len;i++){
+                str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";
+                str += "<div><div class='header'><strong class='primary-font'>"+list[i].replyer+"</strong>";
+                str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small></div>";
+                str += "<p>"+list[i].reply+"</p></div></li>"
+             }//for
+             
+             replyUL.html(str);
+             
+          }//function(list)
+          
+       );//replyService.getList
+       
+    }//function showList(page)
+    
+ });//$(document).ready(function()
 	
 	/* replyService.add(
 		{reply : "JS TEST2", replyer:"tester2", bno: bnoValue},
@@ -93,17 +168,19 @@
 		}
 	);  */
 	
-	replyService.update(
+	/* replyService.update(
 			{rno: 41, reply: '수정내용..555555'},
 			function(result){
 				alert("수정 완료");
 			}
-		);
+		); */
+	
+	 /* replyService.get(41,function(data){
+		   alert(data);
+		   console.log(data);
+	}); */	 
 
-	$(document).ready(function(){
-		console.log("JS TEST");
-		
-	});
+	
 </script>
             
 <script>
