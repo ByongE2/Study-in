@@ -60,7 +60,42 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-  
+<!-- 댓글 모달창 시작 -->
+  <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog" tabindex="-1"> <!--tabindex="-1"는 화면 모달 창이 제일 앞으로 ..  -->
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Reply Modal</h4>
+      </div>
+      <div class="modal-body">
+		<div class="form-group">
+			<label>Reply</label>
+			<input class="form-control" name="reply" value="new replyer">
+		</div>
+		<div class="form-group">
+			<label>Replyer</label>
+			<input class="form-control" name="replyer" value="replyer">
+		</div>
+		<div class="form-group">
+			<label>Reply Date</label>
+			<input class="form-control" name="replyDate" value="">
+		</div>
+      </div>
+      <div class="modal-footer">
+      	<button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
+      	<button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
+      	<button id="modalRegisterBtn" type="button" class="btn btn-info">Register</button>
+        <button id="modalCloseBtn" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- 댓글 모달창 끝 -->  
 <!-- 댓글----------------------------------------------------------------------- -->
 <style type="text/css">
 	.chat{
@@ -80,11 +115,12 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            <i class="fa fa-comments fa-fw"></i>Ready
+                           <button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">New Reply</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                         	<ul class="chat">
-                        		<li class="left clearfix" data-rno='12'>
+                        		<!-- <li class="left clearfix" data-rno='12'>
                         			<div>
 	                        			<div class="header">
 	                        				<strong class="primary-font">user00</strong>
@@ -92,7 +128,7 @@
 	                        			</div>
 	                        			<p>댓글 테스트</p>
 	                        		</div>	
-                        		</li>
+                        		</li> 이벤트 위임 해서 동적인것으로 처리.-->
                         	</ul>
                         		
                         </div>
@@ -114,6 +150,65 @@ $(document).ready(function(){
     console.log("replyUL : " + replyUL);
     
     showList(1);
+    
+    // 댓글 modal창 연결
+    var modal = $("#myModal");
+    var modalInputReply = modal.find("input[name='reply']");
+    var modalInputReplyer = modal.find("input[name='replyer']");
+    var modalInputReplyDate = modal.find("input[name='replyDate']");
+    
+    var modalModBtn = $("#modalModBtn");
+    var modalRemoveBtn = $("#modalRemoveBtn");
+    var modalRegisterBtn = $("#modalRegisterBtn");
+    
+    $("#addReplyBtn").on("click", function(){
+    	modal.find("input").val("");  //input태그의 value를 ""로 초기화
+    	modalInputReplyDate.closest("div").hide();
+    	modal.find("button[id !='modalCloseBtn']").hide();
+    	
+    	modalRegisterBtn.show();
+    	
+    	$("#myModal").modal("show");
+    });
+    
+    //댓글 modal창에서 register 기능 활성
+    modalRegisterBtn.on("click", function(e){
+    	var replys = { //자바스크립트 key : value 객체 생성.
+    			reply : modalInputReply.val(),
+    			replyer : modalInputReplyer.val(),
+    			bno : bnoValue
+    	}
+    	
+    	replyService.add(replys, function(result){
+    		alert("result : " + result);
+    		modal.find("input").val("");
+    		modal.modal("hide");
+    		showList(1); //등록 후 알람창 끄면 바로 추가되게끔.
+    		
+    	})// replyService.add
+    	
+    })//Register 
+  
+    
+    //이벤트위임 시작(댓글 클릭 시) 어떤 댓글이 올지 모르니 위임으로 처리.
+    $(".chat").on("click","li", function(){
+    	var rno = $(this).data("rno"); //data()메서드이용해서 rno 가져옴.
+		
+    	replyService.get(rno, function(reply){
+    		modalInputReply.val(reply.reply);
+    		modalInputReplyer.val(reply.replyer);
+    		//modalInputReplyDate.val(reply.Date)//수정예정
+    		modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly"); //수정불가하게.
+    		modal.data("rno", reply.rno);
+    		
+    		modal.find("button[id !='modalClassBtn']").hide();
+    		modalModBtn.show();
+    		modalRemoveBtn.show();
+    		
+    		$("#myModal").modal("show");
+    	});
+    });
+    //이벤트위임 끝
     function showList(page){
        replyService.getList(
           {bno:bnoValue, page:page||1},
