@@ -140,7 +140,7 @@
             </div>
             <!-- /.row -->
 
-<script type="text/javascript" src="/resources/js/reply.js"></script>
+<script type="text/javascript" src="/resources/js/reply.js?ver=2"></script>
 <script>
 
 	
@@ -161,6 +161,30 @@ $(document).ready(function(){
     var modalRemoveBtn = $("#modalRemoveBtn");
     var modalRegisterBtn = $("#modalRegisterBtn");
     
+    //삭제
+    modalRemoveBtn.on("click", function(e){
+    	var rno = modal.data("rno");
+    	replyService.remove(rno, function(result){
+    		alert("result : " + result)
+    		modal.modal("hide");
+    		showList(1);
+    	});
+    	
+    });//remove
+    
+    //수정
+    modalModBtn.on("click", function(e){
+    	var reply = {
+    			rno : modal.data("rno"),
+    			reply : modalInputReply.val()
+    	};
+    	replyService.update(reply, function(result){
+    		alert("result : " + result)
+    		modal.modal("hide");
+    		showList(1);
+    	});
+    });//Modify    
+    
     $("#addReplyBtn").on("click", function(){
     	modal.find("input").val("");  //input태그의 value를 ""로 초기화
     	modalInputReplyDate.closest("div").hide();
@@ -171,7 +195,7 @@ $(document).ready(function(){
     	$("#myModal").modal("show");
     });
     
-    //댓글 modal창에서 register 기능 활성
+    //등록
     modalRegisterBtn.on("click", function(e){
     	var replys = { //자바스크립트 key : value 객체 생성.
     			reply : modalInputReply.val(),

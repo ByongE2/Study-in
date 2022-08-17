@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.ReplyPageDTO;
 import org.zerock.domain.ReplyVO;
 import org.zerock.service.ReplyService;
 
@@ -59,12 +60,13 @@ public class ReplyController {
 	//bno의 여러 댓글 들 중, 댓글들의 페이지.
 	@GetMapping(value = "/pages/{bno}/{page}", 
 			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<List<ReplyVO>> getlist(@PathVariable("bno") Long bno, @PathVariable("page") int page) {
+	public ResponseEntity<ReplyPageDTO> getlist(@PathVariable("bno") Long bno, @PathVariable("page") int page) {
 
 		log.info("getList......" + bno + ":" + page);
-		Criteria cri = new Criteria(page, 10);
+		Criteria cri = new Criteria(page, 5);
 		log.info("cri : " + cri);
-		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
+//		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
+		return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
 	}//getlist
 	
 	//삭제 										//값넘겨주는게아니라 성공 실패만알려주면 되서(String) text_plain_value

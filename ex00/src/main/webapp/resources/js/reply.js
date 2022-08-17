@@ -43,9 +43,11 @@ var replyService = (function(){
   function remove(rno, callback, error){
     $.ajax({
       type : 'delete',
-      url : "/replies/" + rno,
+      url : '/replies/' + rno,
       success : function(deleteResult, status, xhr){
-        if(callback) callback(deleteResult);
+        if(callback){
+          callback(deleteResult);
+        }
       },
       error : function(xhr, status, err){
         if(error) error(err);
@@ -128,7 +130,7 @@ var replyService = (function(){
       var mi = dateObj.getMinutes();
       var ss = dateObj.getSeconds();
 
-      return [(hh>9 ? ":'0') + hh, ':', (mm>9 ?":'0') + mi, ':', (ss>9 ? '':'0')].join('');
+      return [ (hh>9 ? '' : '0' ) + hh,  ' : ',   (mi>9? '' : '0')+mi, ' : ' , (ss>9? ' ' : '0')+ss  ].join(' ');
     }else{
       var yy = dateObj.getFullYear();
       var mm = dateObj.getMonth() + 1;

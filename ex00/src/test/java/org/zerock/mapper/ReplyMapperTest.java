@@ -72,5 +72,19 @@ public class ReplyMapperTest {
 		log.info(replies);
 	}
 	
+	//댓글 페이징 인덱싱 처리 rn 테스트
+	@Test
+	public void testList2() {
+		Criteria cri = new Criteria(1,10);
+		List<ReplyVO> replies = mapper.getListWithPaging(cri, 54323L);
+		
+		replies.forEach(reply -> log.info(reply));
+	}
 	
+	//댓글 페이징처리 위해 bno에서 총 댓글 수 확인.
+	@Test
+	public void testCount() {
+		int num = mapper.getCountByBno(54323L);
+		log.info("num : " + num);
+	}
 }
