@@ -31,7 +31,8 @@ var replyService = (function(){
     $.getJSON("/replies/pages/" + bno + "/" + page + ".json" ,  //경로
       function(data){   //성공 시
         if(callback){
-          callback(data);
+          //callback(data); 댓글 목록만 가져오는 경우 사용
+          callback(data.replyCnt, data.list); //댓글 페이징 처리 위해서
         }
       }).fail(function(xhr, status, err){
         if(error) {

@@ -63,7 +63,7 @@ public class ReplyController {
 	public ResponseEntity<ReplyPageDTO> getlist(@PathVariable("bno") Long bno, @PathVariable("page") int page) {
 
 		log.info("getList......" + bno + ":" + page);
-		Criteria cri = new Criteria(page, 5);
+		Criteria cri = new Criteria(page, 10);
 		log.info("cri : " + cri);
 //		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
 		return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);

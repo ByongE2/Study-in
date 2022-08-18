@@ -133,6 +133,9 @@
                         		
                         </div>
                         <!-- /.panel-body -->
+                       	<div class="panel-footer">
+                       		
+                       	</div>
                     </div>
                     <!-- /.panel -->
                 </div>
@@ -207,7 +210,7 @@ $(document).ready(function(){
     		alert("result : " + result);
     		modal.find("input").val("");
     		modal.modal("hide");
-    		showList(1); //등록 후 알람창 끄면 바로 추가되게끔.
+    		showList(-1); //등록 후 알람창 끄면 바로 추가되게끔.
     		
     	})// replyService.add
     	
@@ -234,12 +237,20 @@ $(document).ready(function(){
     });
     //이벤트위임 끝
     function showList(page){
-       replyService.getList(
+    	
+    	replyService.getList(
           {bno:bnoValue, page:page||1},
-          function(list){
+          function(replyCnt, list){
+        	 //댓글 추가하면 댓글 마지막에 page로 가게끔.
+        	 if(page == -1){
+        		 pageNum = Math.ceil(replyCnt/10.0);
+        		 showList(pageNum);
+        		 return ;
+        	 } 
+        	  
              var str="";
              if(list==null||list.length==0){
-                replyUL.html("");
+                //replyUL.html("");
                 return;
              }
              
@@ -251,12 +262,58 @@ $(document).ready(function(){
              }//for
              
              replyUL.html(str);
+             showReplyPage(replyCnt);
              
           }//function(list)
           
        );//replyService.getList
        
     }//function showList(page)
+    
+    //댓글 페이지 출력 부분
+    var pageNum = 1;
+    var replyPageFooter = $(".panel-footer");
+    
+    function showReplyPage(replyCnt){
+    	var endNum = Math.ceil(pageNum/10.0)*10;
+    	var startNum = endNum -9;
+    	
+    	var prev = startNum != 1;
+    	var next = false;
+    	
+    	if((endNum * 10) >= replyCnt){
+    		next = true;
+    	}
+
+    	var str = "<ul class='pagination pull-right'>";
+    	if(prev){
+    		str += "<li class='page-item'><a class='page-link' href='"+ (startNum-1)  +" '>Previous</a></li>"; 
+    	}
+    	for(var i = startNum; i<= endNum; i++){
+    		var active = pageNum == i ? "active" : "";
+    		str += "<li class='page-item " + active + " '><a class='page-link' href='"+ i +" '>" + i + "</a></li>"; 
+    	}
+    	if(next){
+    		str += "<li class='page-item'><a class='page-link' href='"+ (endNum-1)  +" '>Next</a></li>";
+    	}
+    	
+    	str +="</ul></div>";
+    	
+    	replyPageFooter.html(str);
+    }//end showReplyPage
+    
+    replyPageFooter.on("click","li a", function(e){
+        e.preventDefault();
+        console.log("page click");
+        
+        var targetPageNum = $(this).attr("href");
+        
+        console.log("targetPageNum: " + targetPageNum);
+        
+        pageNum = targetPageNum;
+        
+        showList(pageNum);
+   });    //end replyPageFooter
     
  });//$(document).ready(function()
 	
