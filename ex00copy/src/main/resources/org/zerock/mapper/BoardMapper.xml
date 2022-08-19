@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.zerock.mapper.BoardMapper">
+
+	<sql id="criteria">
+		<trim prefix="(" suffix=") and">
+			<foreach collection="typeArr" item="type" separator="or">
+				<if test="type=='T'.toString()">
+					title like '%' || #{keyword} || '%'
+				</if>
+				<if test="type=='C'.toString()">
+					content like '%' || #{keyword} || '%'
+				</if>
+				<if test="type=='W'.toString()">
+					writer like '%' || #{keyword} || '%'
+				</if>
+			</foreach>
+		</trim>
+	</sql>
+	
+	
+
+  <select id="getList" resultType="org.zerock.domain.BoardVO">
+    select * from tbl_board where bno>0
+    order by bno desc
+  </select>
+  
+  <select id="read"  resultType="org.zerock.domain.BoardVO">
+  	select * from tbl_board where bno = #{bno}
+  </select>
+  
+  <!-- <select id="getListWithPagging" resultType="org.zerock.domain.BoardVO">
+	<![CDATA[
+	
+	select bno, title, content, writer, regDate, updateDate
+	from (
+	select /*+ index_desc(tbl_board pk_board )*/ 
+	rownum rn, bno, title, content, writer, regDate, updateDate
+	from TBL_BOARD 
+	where rownum <=20
+	)
+	where rn >10
+	
+	]]>
+  </select> -->
+  <!-- 페이징 -->
+  <!-- 잘안되면 다시쓰는 카피용 원본 -->
+  <!-- <select id="getListWithPagging" resultType="org.zerock.domain.BoardVO">
+	<![CDATA[
+	
+	select bno, title, content, writer, regDate, updateDate
+	from (
+	select /*+ index_desc(tbl_board pk_board )*/ 
+	rownum rn, bno, title, content, writer, regDate, updateDate
+	from TBL_BOARD 
+	where rownum <= (#{pageNum}) * #{amount}
+	)
+	where rn > (#{pageNum}-1) * #{amount}
+	
+	]]>
+  </select> -->
+  <select id="getListWithPagging" resultType="org.zerock.domain.BoardVO">
+	<![CDATA[
+	
+	select bno, title, content, writer, regDate, updateDate
+	from (
+		select /*+ index_desc(tbl_board pk_board )*/ 
+		rownum rn, bno, title, content, writer, regDate, updateDate
+		from TBL_BOARD 
+		where 
+	]]>
+		
+		<include refid="criteria"></include>
+	<![CDATA[
+		rownum <= (#{pageNum}) * #{amount}
+		)
+		where 
+		rn > (#{pageNum}-1) * #{amount}
+	]]>
+  </select>
+  
+  
+  <!-- 총 데이터 수 가져오기 -->
+  <select id="getTotalCount" resultType="int">
+  	select count(*) as totalCount from tbl_board where 
+  	
+  	<include refid="criteria"></include>
+  	
+  	bno > 0
+  </select>
+  
+  
+  <delete id="delete">
+  	delete from tbl_board where bno=#{bno}
+  </delete>
+  
+  <insert id="insert">
+  		insert into TBL_BOARD(bno, title, content, writer)
+		values(seq_board.nextval, #{title}, #{content}, #{writer})
+  </insert>
+  
+  <insert id="insertSelectKey" >
+       
+       <selectKey keyProperty="bno" order="BEFORE" resultType="long">
+       		select seq_board.nextval from dual
+       </selectKey>
+  
+  		insert into TBL_BOARD(bno, title, content, writer)
+		values(#{bno}, #{title}, #{content}, #{writer})
+  </insert>
+  
+  <update id="update" >
+  	update tbl_board
+	set title=#{title},
+	content = #{content},
+	writer = #{writer},
+	updatedate = sysdate
+	where bno = #{bno}
+  </update>
+  
+  <!-- 검색 조건 -->
+  <select id="searchTest" resultType="org.zerock.domain.BoardVO">
+  <!-- select * from(
+    select rownum rn, title, content, writer, regdate, updatedate
+    from tbl_board
+    where (title like '%수원%' 
+    or content like '%돈가스%')
+    and rownum <= 20
+)
+where rn > 10;
+ -->
+ 	<![CDATA[ 
+	select * from tbl_board
+	where
+	]]>
+	<!-- <trim suffix="and">
+		<foreach collection="map" index="key" item="val" separator="or" open="(" close=")"> -->
+		<!-- 일치하는거 없을 때 도 open,close에서 ()랑 붙여버림. 그래서 prefix suffix로 수정. -->
+	<trim prefix="(" suffix=") and">
+		<foreach collection="map" index="key" item="val" separator="or">
+			<if test = "key == 'T'.toString()">
+				title like #{val}
+			</if>
+			<if test = "key == 'W'.toString()">
+				writer like #{val}
+			</if>
+			<if test = "key == 'C'.toString()">
+				content like #{val}
+			</if>
+		</foreach>
+	</trim>	
+	<![CDATA[ 
+	rownum < 10
+	]]>
+  </select>
+  
+  
+  
+  
+  
+</mapper>
