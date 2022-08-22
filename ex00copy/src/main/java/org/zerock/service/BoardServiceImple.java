@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
+import org.zerock.mapper.ReplyMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -16,6 +17,8 @@ import lombok.extern.log4j.Log4j;
 public class BoardServiceImple implements BoardService{
 
 	private BoardMapper mapper;
+	private ReplyMapper replyMapper;
+	
 	
 	@Override
 	public void register(BoardVO vo) {
@@ -35,6 +38,8 @@ public class BoardServiceImple implements BoardService{
 	@Override
 	public int remove(Long bno) {
 		log.info("삭제ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + bno);
+		
+		replyMapper.deleteAll(bno);
 		
 		log.info(mapper.delete(bno));
 		

@@ -3,6 +3,7 @@ package org.zerock.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 
@@ -31,6 +32,9 @@ public interface BoardMapper {
 	
 	//검색 조건
 	public List<BoardVO> searchTest(Map<String, Map<String,String>> map); // Map, 안에 Map
+	
+	//댓글 수 등록(mybats 2개의 데이터 사용하기 위해서 @param
+	public void updateReplyCnt(@Param("bno")Long bno, @Param("amount")int amount);
 	
 	
 	
